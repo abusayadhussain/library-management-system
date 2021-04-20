@@ -10,11 +10,11 @@ const {
   list,
   listRelated,
   listAuthors,
-  listBySearch,
   listSearch,
 } = require("../controllers/book");
 const { requireSignIn, isAuth, isAdmin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
+const { authorById } = require("../controllers/author");
 
 router.get("/book/:bookId", read);
 router.post("/book/create/:userId", requireSignIn, isAuth, isAdmin, create);
@@ -35,12 +35,12 @@ router.put(
 
 router.get("/books", list);
 router.get("/books/search", listSearch);
-router.get("/books/related/:productId", listRelated);
+router.get("/books/related/:bookId", listRelated);
 router.get("/books/authors", listAuthors);
-router.post("/books/by/search", listBySearch);
+
 
 
 router.param("userId", userById);
 router.param("bookId", bookById);
-
+router.param("authorId", authorById);
 module.exports = router;

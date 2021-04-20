@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const { ObjectId } = mongoose.Schema;
 
-const loan = new mongoose.Schema({
+const loanSchema = new mongoose.Schema({
   book: {
     type:  ObjectId,
     ref: "Book",
@@ -29,4 +29,6 @@ isReturned: {
   timestamps: true,
 });
 
-module.exports = mongoose.model('Loan', loan);
+loanSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('Loan', loanSchema);

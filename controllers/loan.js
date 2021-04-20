@@ -193,16 +193,10 @@ exports.verifyLoan = (req,res) => {
 
 
 exports.list = (req, res) => {
-  let order = req.query.order ? req.query.order : "asc";
-  let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
-  let limit = req.query.limit ? parseInt(req.query.limit) : 10;
-
-  Loan.find()
-    .populate('book')
-    .populate('user','-photo')
-    .sort([[sortBy, order]])
-    .limit(limit)
-    .exec((err, loans) => {
+  let options = {
+    populate:['book', 'user']
+  }
+  Loan.paginate({}, options,(err, loans) => {
       if (err) {
         return res.status(400).json({
           error: "No Loans found!",

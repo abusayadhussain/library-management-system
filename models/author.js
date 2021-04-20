@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Schema = mongoose.Schema;
 
-const author = new Schema({
+const authorSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -21,4 +21,6 @@ const author = new Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model('Author', author);
+authorSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('Author', authorSchema);
