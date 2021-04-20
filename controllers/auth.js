@@ -65,8 +65,6 @@ exports.signin = (req, res) => {
       .replace(/\\n/g, '\n');
     // generate signed token with user id and secret
     const token = jwt.sign({ _id: user._id }, privateKEY, {expiresIn: '2h', algorithm: 'RS256'});
-    // persist the token as 't' in cookie with expiry date
-    // res.cookie("t", token, { expire: new Date() + 9999 });
     //return response with user and token to frontend client
     const { _id, name, email, role } = user;
     return res.json({
@@ -76,12 +74,7 @@ exports.signin = (req, res) => {
   });
 };
 
-// exports.signout = (req, res) => {
-//   res.clearCookie("t");
-//   res.json({
-//     message: "Singout successful",
-//   });
-// };
+
 
 exports.requireSignIn = expressJwt({
   secret: process.env.PUBLIC_KEY
