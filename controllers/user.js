@@ -15,7 +15,11 @@ exports.userById = (req, res, next, id) => {
 exports.read = (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
-  return res.json(req.profile);
+  return res.status(200).json({
+    message: "User profile",
+    statusCode: res.statusCode,
+    data:req.profile
+  });
 };
 
 exports.update = (req, res) => {
@@ -31,7 +35,11 @@ exports.update = (req, res) => {
       }
       user.hashed_password = undefined;
       user.salt = undefined;
-      res.json(user);
+      res.status(200).json({
+        message: "Profile updated successfully",
+        statusCode: res.statusCode,  
+        data:user
+      });
     }
   );
 };

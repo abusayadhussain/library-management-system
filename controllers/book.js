@@ -18,7 +18,11 @@ exports.bookById = (req, res, next, id) => {
 
 exports.read = (req, res) => {
   
-  return res.json(req.book);
+  return res.status(200).json({
+    message: "Book found with the given id",
+    statusCode: res.statusCode, 
+    data: req.book
+  });
 };
 
 exports.create = (req, res) => {
@@ -26,7 +30,11 @@ exports.create = (req, res) => {
   book.save((err, book) => {
     if (err) return res.status(400).json({ error: errorHandler(err) });
     
-    res.json({ book });
+    res.status(201).json({
+      message: "Book created successfully",
+      statusCode: res.statusCode, 
+      data: book
+     });
   });
 };
 
@@ -38,7 +46,7 @@ exports.remove = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json({
+    res.status(200).json({
       message: "Book deletion successful",
     });
   });
@@ -57,7 +65,11 @@ exports.update = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json(data);
+    res.status(200).json({
+      message: "Book updated successfully",
+      statusCode: res.statusCode,
+      data
+    });
   });
 };
 
@@ -81,7 +93,11 @@ exports.list = (req, res) => {
           error: "No Books found!",
         });
       }
-      res.json(books);
+      res.status(200).json({
+        message: "List of all Books",
+        statusCode: res.statusCode,   
+        data: books
+      });
     });
 };
 
@@ -110,7 +126,11 @@ exports.listRelated = (req, res) => {
           error: "No Books found!",
         });
       }
-      res.json(books);
+      res.status(200).json({
+        message: "List of all Authors",
+        statusCode: res.statusCode,   
+        data: books
+      });
     });
 };
 
@@ -121,7 +141,11 @@ exports.listAuthors = (req, res) => {
         error: "No Authors found!",
       });
     }
-    res.json(authors);
+    res.status(200).json({
+      message: "List of all Authors",
+      statusCode: res.statusCode,
+      data: authors
+    });
   });
 };
 
@@ -156,7 +180,11 @@ exports.listSearch = (req, res) => {
         error: errorHandler(err)
           })
     }
-      res.json(books)
+      res.status(200).json({
+        message: "Search result of the books",
+        statusCode: res.statusCode,
+        data: books
+      })
     })
   }
 }

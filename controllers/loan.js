@@ -23,13 +23,15 @@ exports.loanById = (req, res, next, id) => {
 exports.read = (req, res) => {
   let loan = req.loan;
   if(loan.isActive === false){
-    return res.json({
+    return res.status(200).json({
         message: "Loan is not issued yet",
+        statusCode: res.statusCode,
         data: loan
     });
   }
   return res.json({
     message: "Loan issued successfully",
+    statusCode: res.statusCode,
     data: loan
 });
 };
@@ -56,8 +58,10 @@ exports.create = (req, res) => {
         loan.save((err, loan) => {
           if (err) return res.status(400).json({ error: errorHandler(err) });
          
-          res.json({message: "Loan request accepted and waiting for Admin to approve!",
-                    data: loan});
+          res.status(201).json({
+            message: "Loan request accepted and waiting for Admin to approve!",
+            statusCode: res.statusCode,
+            data: loan});
         });
     })
   
@@ -71,7 +75,7 @@ exports.remove = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json({
+    res.status(200).json({
       message: "Loan deletion successful",
     });
   });
@@ -90,26 +94,30 @@ exports.update = (req, res) => {
               });
         }
         let loan = req.loan;
-  loan.book = req.body.book;
-  loan.quantity = req.body.quantity;
-  loan.isActive = req.body.isActive;
-  loan.save((err, data) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler(err),
-      });
-    }
-    book.stock -= loan.quantity;
-    if(book.stock >= 0){
-    book.save((err, book) => {
-        if(err){
+        loan.book = req.body.book;
+        loan.quantity = req.body.quantity;
+        loan.isActive = req.body.isActive;
+        loan.save((err, data) => {
+        if (err) {
           return res.status(400).json({
-              error: "Something wrong happen",
-            }); 
-        } 
-    })
-  }
-    res.json(data);
+            error: errorHandler(err),
+        });
+      }
+      book.stock -= loan.quantity;
+      if(book.stock >= 0){
+      book.save((err, book) => {
+          if(err){
+           return res.status(400).json({
+                error: "Something wrong happen",
+              }); 
+          } 
+      })
+    }
+      res.status(200).json({
+        message: "Book loan approved and updated successfully",
+        statusCode: res.statusCode,
+        data
+      });
   });
   
 });
@@ -132,8 +140,11 @@ exports.returnLoan = (req, res) => {
                       error: "No such book borrowed",
                     }); 
                 } 
-                res.json({message:"Book return request recieved and waiting for admin to approve!",
-                          data:loan }); 
+                res.status(200).json({
+                  message:"Book return request recieved and waiting for admin to approve!",
+                  statusCode: res.statusCode,
+                  data:loan
+                 }); 
             })
           }
            else{
@@ -175,22 +186,15 @@ exports.verifyLoan = (req,res) => {
               error: errorHandler(err),
             });
           }
-            res.json({
+            res.status(200).json({
                 message: "Loan deleted and book returned to Library successfully!",
               });
             }); 
         }
       }
-
-    
     })
-    
-
   })
 }
-
-
-
 
 exports.list = (req, res) => {
   let page = req.query.page || 1;
@@ -210,7 +214,11 @@ exports.list = (req, res) => {
           error: "No Loans found!",
         });
       }
-      res.json(loans);
+      res.status(200).json({
+        message: "List of all the loans",
+        statusCode: res.statusCode,
+        data:loans
+      });
     });
 };
 
@@ -287,10 +295,12 @@ exports.genrateExcel =  (req, res) => {
       if(err){
         res.status(500).json({message: 'Couldnot generate LoanData excel sheet'});
       }
-      res.json({message:"Successfully excel sheet for LoanData generated",
-                data: result});
+      res.status(200).json({
+        message:"Successfully excel sheet for LoanData generated",
+        statusCode: res.statusCode,
+        data: result
+      });
     });
-
-    })
+  })
 }
 

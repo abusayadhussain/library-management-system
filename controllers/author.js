@@ -14,7 +14,11 @@ exports.authorById = (req, res, next, id) => {
 };
 
 exports.read = (req, res) => {
-  return res.json(req.author);
+  return res.status(200).json({
+    message: "Author found with the given id",
+    statusCode: res.statusCode,  
+    data: req.author
+  });
 };
 
 exports.create = (req, res) => {
@@ -25,7 +29,9 @@ exports.create = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json({
+    res.status(201).json({
+      message: "Author created successfully",
+      statusCode: res.statusCode,  
       data,
     });
   });
@@ -42,7 +48,11 @@ exports.update = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json(data);
+    res.status(200).json({
+      message: "Author updated successfully",
+      statusCode: res.statusCode,   
+      data
+    });
   });
 };
 
@@ -54,8 +64,8 @@ exports.remove = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json({
-      message: "Author deleted",
+    res.status(200).json({
+      message: "Author deletion successful",
     });
   });
 };
@@ -77,6 +87,10 @@ exports.list = (req, res) => {
         error: errorHandler(err),
       });
     }
-    res.json({data});
+    res.status(200).json({
+      message: "List of all Authors",
+      statusCode: res.statusCode,   
+      data
+    });
   });
 };

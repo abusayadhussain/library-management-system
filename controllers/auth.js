@@ -20,7 +20,11 @@ exports.signup = (req, res) => {
     if (err) return res.status(400).json({ error: errorHandler(err) });
     user.salt = undefined;
     user.hashed_password = undefined;
-    res.json({ user });
+    res.status(201).json({ 
+      message:"user successfully signed up",
+      statusCode: res.statusCode, 
+      user 
+    });
   });
   
 };
@@ -48,7 +52,9 @@ exports.signin = (req, res) => {
     const token = jwt.sign({ _id: user._id }, privateKEY, {expiresIn: '2h', algorithm: 'RS256'});
     //return response with user and token to frontend client
     const { _id, name, email, role } = user;
-    return res.json({
+    return res.status(200).json({
+      message: "Sign in Successfull",
+      statusCode: res.statusCode,
       token,
       user: { _id, name, email, role },
     });
