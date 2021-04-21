@@ -61,7 +61,17 @@ exports.remove = (req, res) => {
 };
 
 exports.list = (req, res) => {
-  Author.paginate({},{},(err, data) => {
+  let page = req.query.page || 1;
+  let limit = req.query.limit || 10;
+  let sort = req.query.sort;
+  
+  let options = {
+    page: page,
+    limit: limit,
+    sort: sort
+  };
+
+  Author.paginate({},options,(err, data) => {
     if (err) {
       return res.status(400).json({
         error: errorHandler(err),

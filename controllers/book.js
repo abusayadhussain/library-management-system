@@ -64,9 +64,17 @@ exports.update = (req, res) => {
 
 
 exports.list = (req, res) => {
+  let page = req.query.page || 1;
+  let limit = req.query.limit || 10;
+  let sort = req.query.sort;
+
   let options = {
-    populate: 'author'
-  }
+    populate: 'author',
+    page: page,
+    limit: limit,
+    sort: sort
+  };
+
   Book.paginate({},options,(err, books) => {
       if (err) {
         return res.status(400).json({
@@ -82,10 +90,17 @@ exports.list = (req, res) => {
  */
 
 exports.listRelated = (req, res) => {
+  let page = req.query.page || 1;
+  let limit = req.query.limit || 10;
+  let sort = req.query.sort;
+
   let options = {
-    populate: 'author'
-  }
-  console.log(req.book);
+    populate: 'author',
+    page: page,
+    limit: limit,
+    sort: sort
+  };
+
   Book.paginate({
     _id: { $ne: req.book },
     author: req.book.author,
@@ -124,15 +139,23 @@ exports.listSearch = (req, res) => {
     }
     //find the book based on query object with 2 properties
     //search & author
-    let options = {
-      populate: 'author'
+  let page = req.query.page || 1;
+  let limit = req.query.limit || 10;
+  let sort = req.query.sort;
+  
+  let options = {
+    populate: 'author',
+    page: page,
+    limit: limit,
+    sort: sort
+  };
+
+  Book.paginate(query, options,(err,books)=>{
+    if(err){
+      return res.status(400).json({
+        error: errorHandler(err)
+          })
     }
-    Book.paginate(query, options,(err,books)=>{
-      if(err){
-        return res.status(400).json({
-          error: errorHandler(err)
-        })
-      }
       res.json(books)
     })
   }

@@ -193,9 +193,17 @@ exports.verifyLoan = (req,res) => {
 
 
 exports.list = (req, res) => {
+  let page = req.query.page || 1;
+  let limit = req.query.limit || 10;
+  let sort = req.query.sort;
+
   let options = {
-    populate:['book', 'user']
-  }
+    populate:['book', 'user'],
+    page: page,
+    limit: limit,
+    sort: sort
+  };
+
   Loan.paginate({}, options,(err, loans) => {
       if (err) {
         return res.status(400).json({
@@ -275,7 +283,7 @@ exports.genrateExcel =  (req, res) => {
     }
       
      
-    wb.write('LoanData.xlsx', (err,result)=>{
+    wb.write('./loan-report/LoanData.xlsx', (err,result)=>{
       if(err){
         res.status(500).json({message: 'Couldnot generate LoanData excel sheet'});
       }
