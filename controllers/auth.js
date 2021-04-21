@@ -6,40 +6,21 @@ const jwt = require("jsonwebtoken"); // to generate auth token
 const expressJwt = require("express-jwt"); // for authorization check
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
+ 
+
 exports.signup = (req, res) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Image could not be uploaded",
-      });
-    }
-    const { name, email, about, role, history } = fields;
-    if (
-      !name ||
-      !email
-    ) {
-      return res.status(400).json({
-        error: "Name and  Email fields are required",
-      });
-    }
-    const user = new User(fields);
-    if (files.photo) {
-      if (files.photo.size > 1000000) {
-        return res.status(400).json({
-          error: "Image file should be less than 1 mb in size",
-        });
-      }
-      user.photo.data = fs.readFileSync(files.photo.path);
-      user.photo.contentType = files.photo.type;
-    }
-    user.save((err, user) => {
+  console.log(req.file);
+  const user = new User({
+    name:req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    profileImage: req.file.path,
+  });
+  user.save((err, user) => {
     if (err) return res.status(400).json({ error: errorHandler(err) });
     user.salt = undefined;
     user.hashed_password = undefined;
     res.json({ user });
-  });
   });
   
 };
