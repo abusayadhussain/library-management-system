@@ -42,9 +42,10 @@ app.use("/api", authorRoutes);
 app.use("/api", bookRoutes);
 app.use("/api", loanRoutes);
 
-
+//port
 const port = process.env.PORT || 3000;
 
+//server to listen on port 3000
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
