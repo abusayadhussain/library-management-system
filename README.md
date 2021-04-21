@@ -15,7 +15,7 @@ There is a package.json file associated with the project. Simply by running
 
 ## Run the application
 
-- run `npm run dev`
+- run `npm start`
 - App will open at [http://localhost:3000](http://localhost:3000)
 
 ## About the api
