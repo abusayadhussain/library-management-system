@@ -9,7 +9,6 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
  
 
 exports.signup = (req, res) => {
-  console.log(req.file);
   const user = new User({
     name:req.body.name,
     email: req.body.email,
