@@ -1,0 +1,1126 @@
+{
+	"info": {
+		"_postman_id": "649a6a80-f9c3-4c85-a71c-b51567ac5769",
+		"name": "E-Library-Mangement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Abu Sayad Hussain",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abusayedhaasan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": "/F:/Pics/blank-profile-picture-973460_640.png"
+								},
+								{
+									"key": "role",
+									"value": "1",
+									"description": "set role to 1 for admin",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"abusayadhussain@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile-image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTkwMjMwNTAsImV4cCI6MTYxOTAzMDI1MH0.EN6wIxIzqLOkdxLBZ71EsKj13cvL40TH3LItQffy7sR5S9rjxvDy2ShJ24FqPPiDcPqKqbfxYQarJrFfSFyMcA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "t",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdiNGYyZTU0M2I0MjM1YjAwMWE4NzgiLCJpYXQiOjE2MTg2OTQwMjd9.3gS8wjMRq1Exs_yFlT7XJ7iuoknhl7DMNb4zskIGgZc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/user/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdiNWUyMGYxYzc2YTM2MDA4ZDVmMmIiLCJpYXQiOjE2MTg3NDI2ODh9.1XQBa_Tj6xqecZz1hc8yko6RHHTtSoT-S9in0OGhCAY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Shoykot\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/user/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg5NTEzNzQsImV4cCI6MTYxODk1ODU3NH0.Ow10-4VNOoMsMt4ENw-GAZU4lASsQd2O9QXT2YqpHSOwR4CsvduXPKkCcxkPXDqd8hWaj_5ALuFpRolVYorgng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"William Shakespeare\",\r\n    \"nationality\": \"English\",\r\n    \"rating\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/author/create/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"author",
+								"create",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg3NzI5NTB9.3nP2m9FQavN1WQrjDCzMh0kQU0caPczHkxh-TM_C7-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"William Shakespeare\",\r\n    \"nationality\": \"English\",\r\n    \"rating\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/author/:authorId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"author",
+								":authorId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "authorId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2MGQxYzQxNjM3ZjQ0MmMwYzkwZjUiLCJpYXQiOjE2MDE4MjMyOTZ9.0aLfelPX5UfxfwRBaeg_n94QluUWZ2RH9zxAIVMKkGc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Samsung\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/author/:authorId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"author",
+								":authorId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "authorId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2MGQxYzQxNjM3ZjQ0MmMwYzkwZjUiLCJpYXQiOjE2MDE4MjMyOTZ9.0aLfelPX5UfxfwRBaeg_n94QluUWZ2RH9zxAIVMKkGc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/author/:authorId",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"author",
+								":authorId"
+							],
+							"variable": [
+								{
+									"key": "authorId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg5NDM4MDEsImV4cCI6MTYxODk1MTAwMX0.HDs0a4hNuEZGU0w6H2zRx-0iXfbYMCt__xsHYlVCRcmn54r530-Jj4s-yNZ6cRiLH7ePKAKn5RkNAfprxQNejQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Romeo and Juliet\",\r\n    \"ISBN\": \"9780140707014\",\r\n    \"stock\": 1,\r\n    \"author\": \"607c83f710a8f8315cfada3f\",\r\n    \"description\": \"Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young Italian star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays. Today, the title characters are regarded as archetypal young lovers.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/book/create/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"book",
+								"create",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg3NzI5NTB9.3nP2m9FQavN1WQrjDCzMh0kQU0caPczHkxh-TM_C7-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"heemlet\",\r\n    \"ISBN\": \"9780140707342\",\r\n    \"stock\": 2,\r\n    \"author\": \"607c83f710a8f8315cfada3f\",\r\n    \"description\": \"When the ghost of his father appears to Prince Hamlet of Denmark, urging him to avenge the king's murder upon the prince's uncle, the tragic flaw of indecision leads Hamlet to ruin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/book/:bookId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"book",
+								":bookId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2MGQxYzQxNjM3ZjQ0MmMwYzkwZjUiLCJpYXQiOjE2MDE4MjMyOTZ9.0aLfelPX5UfxfwRBaeg_n94QluUWZ2RH9zxAIVMKkGc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/book/:bookId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"book",
+								":bookId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2MGQxYzQxNjM3ZjQ0MmMwYzkwZjUiLCJpYXQiOjE2MDE4MjMyOTZ9.0aLfelPX5UfxfwRBaeg_n94QluUWZ2RH9zxAIVMKkGc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/:bookId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								":bookId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/books?page=1&sort=title&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "title"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Related",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/books/related/:bookId",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"related",
+								":bookId"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "4",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/books/authors",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filters\": \"Romeo and Juliet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/books/search?search=bookTitle&author=authorname",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "bookTitle"
+								},
+								{
+									"key": "author",
+									"value": "authorname"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "generate-loan-data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTkwMTYwNzEsImV4cCI6MTYxOTAyMzI3MX0.QoG3L7Qjg4hZStkQl-b7LxLZ0RSbIRHTo9doDy3xNPsY3Qk9y_zLTmaRRF-JRm-EVcGEtH8KwvOz7i1KE9ZiKg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/generate-loan-data/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"generate-loan-data",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTkwMTYwNzEsImV4cCI6MTYxOTAyMzI3MX0.QoG3L7Qjg4hZStkQl-b7LxLZ0RSbIRHTo9doDy3xNPsY3Qk9y_zLTmaRRF-JRm-EVcGEtH8KwvOz7i1KE9ZiKg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/loans/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"loans",
+								":loggedinuserId"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4NTMyNTJ9.AdIsnYJfXSXP35aOSXwAqerSuUBxuxV6kFs-_ng5JVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/loan/:loanId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"loan",
+								":loanId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return-loan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4NTMyNTJ9.AdIsnYJfXSXP35aOSXwAqerSuUBxuxV6kFs-_ng5JVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"607c94e785a9881cb838c4eb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/return-loan/:loanId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"return-loan",
+								":loanId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-loan",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4NTMyNTJ9.AdIsnYJfXSXP35aOSXwAqerSuUBxuxV6kFs-_ng5JVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/verify-loan/:loanId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"verify-loan",
+								":loanId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4NTMyNTJ9.AdIsnYJfXSXP35aOSXwAqerSuUBxuxV6kFs-_ng5JVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"607c94e785a9881cb838c4eb\",\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/loan/create/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"loan",
+								"create",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4NTMyNTJ9.AdIsnYJfXSXP35aOSXwAqerSuUBxuxV6kFs-_ng5JVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"607c94e785a9881cb838c4eb\",\r\n    \"quantity\": 1,\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/loan/:loanId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"loan",
+								":loanId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read-loan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjODMyNGU1MTcyNjE2YTQxOTE0MTUiLCJpYXQiOjE2MTg4OTQ2MjB9.6MQi9JwpMSkJ9lEMemf2rjv7qdDC59FvQoPfLA4bgdk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/loan/:loanId/:loggedinuserId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"loan",
+								":loanId",
+								":loggedinuserId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								},
+								{
+									"key": "loggedinuserId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
